@@ -1,10 +1,9 @@
 import { nanoid } from "nanoid"
 import React from "react"
 import Question from "./Components/Question"
-import data from "./data"
 
 
-export default function(){
+export default function App(){
     const [on,setOn] = React.useState(false)
     const [questions,setQuestions] = React.useState([])
     const [buttonClicked,setButtonClicked] = React.useState(false)
