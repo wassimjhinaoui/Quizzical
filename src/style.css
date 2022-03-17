@@ -1,0 +1,130 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  background: #1c1c1c;
+  align-items: center;
+  justify-content: center;
+}
+#root {
+  width: 80%;
+  background: #f5f7fb;
+  min-width: 550px;
+}
+
+.question--container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+main {
+  margin: 75px;
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+  flex-direction: column;
+}
+
+.question {
+  font-family: "Karla";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  color: #293264;
+  margin: 20px 0;
+}
+.answers {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 80%;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10.24px;
+  line-height: 12px;
+  /* identical to box height */
+
+  text-align: center;
+
+  color: #293264;
+}
+
+.answers > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #4d5b9e;
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 5px 10px;
+  min-width: 65px;
+  min-height: 20px;
+  cursor: pointer;
+}
+hr {
+  margin: 50px 0px;
+}
+
+.done {
+  color: #29326496;
+  border: 0.771045px solid #4d5b9e91;
+}
+
+.button {
+  background: #4d5b9e;
+  min-width: 120px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  min-height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.endGame--container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 70%;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 15px;
+  text-align: center;
+
+  color: #293264;
+}
+.startGame--container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-height: 100%;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  line-height: 15px;
+  text-align: center;
+
+  color: #293264;
+}
+.startGame--container > h1 {
+  font-size: 70px;
+}
+.startGame--container > p {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+
+  color: #293264;
+}
