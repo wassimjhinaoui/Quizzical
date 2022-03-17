@@ -24,7 +24,7 @@ export default function App(){
         return arr
     }
     React.useEffect(()=>{
-        fetch("https://opentdb.com/api.php?amount=10")
+        fetch("https://opentdb.com/api.php?amount=10&category=17")
             .then(res => res.json())
             .then(data => {setQuestions(convertData(data.results))})
         // setQuestions(convertData(data.results))
