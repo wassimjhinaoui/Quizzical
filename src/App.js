@@ -9,12 +9,32 @@ export default function App(){
     const [buttonClicked,setButtonClicked] = React.useState(false)
     const [correctAnswers,setCorrectAnswers] = React.useState([])
     const [newGame,setNewGame]  = React.useState(false)
+
+    function shuffle(array) {
+        let currentIndex = array.length,  randomIndex;
+      
+        // While there remain elements to shuffle...
+        while (currentIndex != 0) {
+      
+          // Pick a remaining element...
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex--;
+      
+          // And swap it with the current element.
+          [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex], array[currentIndex]];
+        }
+      
+        return array;
+      }
+
     function convertData(data) {
         let arr = data.map(d => {
             let answers = [{answer:d.correct_answer,correct:true,id:nanoid(),selected:false,color:""}]
             d.incorrect_answers.forEach(answer => {
                 answers.push({answer:answer,correct:false,id:nanoid(),selected:false,color:""})
             });
+            answers = shuffle(answers)
             return {
                 question : d.question,
                 id:nanoid(),
