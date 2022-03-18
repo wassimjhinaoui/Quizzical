@@ -34,7 +34,7 @@ export default function App(){
             d.incorrect_answers.forEach(answer => {
                 answers.push({answer:answer,correct:false,id:nanoid(),selected:false,color:""})
             });
-            // answers = shuffle(answers)
+            shuffle(answers)
             return {
                 question : d.question,
                 id:nanoid(),
