@@ -137,5 +137,12 @@ hr {
   min-height: 100px;
 }
 
-.game--options > select {
+.game--options > label > select {
+  margin-left: 10px;
+  padding: 5px;
+  outline: none;
+  border: none;
+  color: #293264;
+  font-family: "Inter";
+  font-weight: 600;
 }
