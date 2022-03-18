@@ -5,7 +5,7 @@ export default function Question(props) {
     return(
         <>
         <div className="question--container">
-            <h2 className="question" dangerouslySetInnerHTML={{__html: props.question}}></h2>
+        <h2 className="question" > {props.rank} -  <span dangerouslySetInnerHTML={{__html: props.question}}></span></h2>
             <div className="answers">
                 {props.answers.map(answer => (
                     <div 
@@ -18,7 +18,7 @@ export default function Question(props) {
                         onClick={() => props.handelClick(props.id,answer.id)} 
                         key={answer.id}
                     >
-                        {answer.answer}
+                        <span dangerouslySetInnerHTML={{__html: answer.answer}}></span>
                     </div>
                     ))}
             </div>

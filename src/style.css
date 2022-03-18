@@ -64,9 +64,11 @@ main {
   box-sizing: border-box;
   border-radius: 10px;
   padding: 5px 10px;
+  margin-left: 5px;
   min-width: 65px;
   min-height: 20px;
   cursor: pointer;
+  line-height: 15px;
 }
 hr {
   margin: 50px 0px;

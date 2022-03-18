@@ -64,7 +64,7 @@ export default function App(){
         const difficulty = options.game_difficulty !== "any" ? "&difficulty="+options.game_difficulty:"" 
         fetch("https://opentdb.com/api.php?amount=10"+category+difficulty)
             .then(res => res.json())
-            .then(data => {setQuestions(convertData(data.results))})
+            .then(data => {setQuestions(convertData(data.results)); })
         // setQuestions(convertData(data.results))
     },[newGame,options])
      function handelClick(Qid,Aid) {
@@ -103,10 +103,11 @@ export default function App(){
          })
      }
 
-    const questionComponents = questions.map(question => (
+    const questionComponents = questions.map((question,index) => (
         <Question 
             key={question.id} 
             id={question.id} 
+            rank={index + 1} 
             question={question.question} 
             answers={question.answers} 
             handelClick={handelClick} 
@@ -159,17 +160,21 @@ export default function App(){
         setButtonClicked(prev =>!prev)
     }
 
+
     return(
         on ? <main>
             {questionComponents}
             <div className="temp">
-                {!buttonClicked && <button className="button" onClick={checkAnswers}>Check Answers</button>}
+                {!buttonClicked && 
+                    <><button className="button" onClick={checkAnswers}>Check Answers</button>
+                    <button className="button" onClick={()=>setOn(false)}>Main Menu</button>   </> 
+                }
                 {buttonClicked && 
                 <div className="endGame--container">
                     <p>You scored {correctAnswers.length}/{questions.length} correct answers</p>
                     <button className="button" onClick={resetGame}>Play again</button>
                 </div>}
-                <button className="button" onClick={()=>setOn(false)}>Main Menu</button>
+                
             </div>
         </main> : 
         <main className="startGame--container">
