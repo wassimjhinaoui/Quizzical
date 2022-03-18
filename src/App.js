@@ -48,7 +48,7 @@ export default function App(){
             .then(res => res.json())
             .then(data => {setQuestions(convertData(data.results))})
         // setQuestions(convertData(data.results))
-    },[newGame])
+    },[newGame,convertData])
      function handelClick(Qid,Aid) {
          setQuestions(prevQuestions => {
             let abc = []
