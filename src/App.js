@@ -161,13 +161,16 @@ export default function App(){
 
     return(
         on ? <main>
-        {questionComponents}
-        {!buttonClicked && <button className="button" onClick={checkAnswers}>Check Answers</button>}
-        {buttonClicked && 
-            <div className="endGame--container">
-                <p>You scored {correctAnswers.length}/{questions.length} correct answers</p>
-                <button className="button" onClick={resetGame}>Play again</button>
-            </div>}
+            {questionComponents}
+            <div className="temp">
+                {!buttonClicked && <button className="button" onClick={checkAnswers}>Check Answers</button>}
+                {buttonClicked && 
+                <div className="endGame--container">
+                    <p>You scored {correctAnswers.length}/{questions.length} correct answers</p>
+                    <button className="button" onClick={resetGame}>Play again</button>
+                </div>}
+                <button className="button" onClick={()=>setOn(false)}>Main Menu</button>
+            </div>
         </main> : 
         <main className="startGame--container">
             <h1>Quizzical</h1>
