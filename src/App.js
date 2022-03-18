@@ -44,6 +44,21 @@ export default function App(){
         return arr
     }
     React.useEffect(()=>{
+        function convertData(data) {
+            let arr = data.map(d => {
+                let answers = [{answer:d.correct_answer,correct:true,id:nanoid(),selected:false,color:""}]
+                d.incorrect_answers.forEach(answer => {
+                    answers.push({answer:answer,correct:false,id:nanoid(),selected:false,color:""})
+                });
+                shuffle(answers)
+                return {
+                    question : d.question,
+                    id:nanoid(),
+                    answers:answers
+                }
+            })
+            return arr
+        }
         fetch("https://opentdb.com/api.php?amount=10&category=17")
             .then(res => res.json())
             .then(data => {setQuestions(convertData(data.results))})
