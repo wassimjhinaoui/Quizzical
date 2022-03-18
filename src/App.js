@@ -1,6 +1,7 @@
 import { nanoid } from "nanoid"
 import React from "react"
 import Question from "./Components/Question"
+import GameOptions from "./Components/GameOptions"
 
 
 export default function App(){
@@ -9,6 +10,20 @@ export default function App(){
     const [buttonClicked,setButtonClicked] = React.useState(false)
     const [correctAnswers,setCorrectAnswers] = React.useState([])
     const [newGame,setNewGame]  = React.useState(false)
+    const [options,setOptions] = React.useState({
+        game_category:"",
+        game_difficulty:""
+    })
+
+    function handleChange(event) {
+        const {name, value, type, checked} = event.target
+        setOptions(prevOption => {
+            return {
+                ...prevOption,
+                [name]: type === "checkbox" ? checked : value
+            }
+        })
+    }
 
     function shuffle(array) {
         let currentIndex = array.length,  randomIndex;
@@ -45,11 +60,13 @@ export default function App(){
             })
             return arr
         }
-        fetch("https://opentdb.com/api.php?amount=10&category=17")
+        const category = options.game_category !== "any" ? "&category="+options.game_category:"" 
+        const difficulty = options.game_difficulty !== "any" ? "&difficulty="+options.game_difficulty:"" 
+        fetch("https://opentdb.com/api.php?amount=10"+category+difficulty)
             .then(res => res.json())
             .then(data => {setQuestions(convertData(data.results))})
         // setQuestions(convertData(data.results))
-    },[newGame])
+    },[newGame,options])
      function handelClick(Qid,Aid) {
          setQuestions(prevQuestions => {
             let abc = []
@@ -133,22 +150,6 @@ export default function App(){
              return abc
          })
 
-        // questions.forEach(question => {
-        //     question.answers.forEach(answer => {
-        //         if (answer.selected && answer.correct) {
-        //             setCorrectAnswers(prevValue => [...prevValue,answer.id])
-        //             setQuestions(prevQuestions => {
-        //                 prevQuestions.map(q => {
-        //                     q.answers.map(prevAnswer =>(
-        //                         prevAnswer.id === answer.id ?
-        //                             {...prevAnswer , color:"green"} :
-        //                             prevAnswer
-        //                     ))
-        //                 })
-        //             })
-        //         }
-        //     })
-        // });
         setButtonClicked(true)
     }
 
@@ -171,6 +172,7 @@ export default function App(){
         <main className="startGame--container">
             <h1>Quizzical</h1>
             <p>A small quizz game made by Wassim Jhinaoui</p>
+            <GameOptions options={options} handleChange={handleChange} />
             <button className="button" onClick={()=> setOn(true)}>Start Quiz</button>
         </main>
     )

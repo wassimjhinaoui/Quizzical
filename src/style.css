@@ -128,3 +128,14 @@ hr {
 
   color: #293264;
 }
+
+.game--options {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  min-height: 100px;
+}
+
+.game--options > select {
+}
