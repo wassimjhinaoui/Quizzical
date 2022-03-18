@@ -34,7 +34,7 @@ export default function App(){
             d.incorrect_answers.forEach(answer => {
                 answers.push({answer:answer,correct:false,id:nanoid(),selected:false,color:""})
             });
-            answers = shuffle(answers)
+            // answers = shuffle(answers)
             return {
                 question : d.question,
                 id:nanoid(),
@@ -48,7 +48,7 @@ export default function App(){
             .then(res => res.json())
             .then(data => {setQuestions(convertData(data.results))})
         // setQuestions(convertData(data.results))
-    },[newGame,convertData])
+    },[newGame])
      function handelClick(Qid,Aid) {
          setQuestions(prevQuestions => {
             let abc = []
