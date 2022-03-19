@@ -11,6 +11,7 @@ export default function App(){
     const [buttonClicked,setButtonClicked] = React.useState(false)
     const [correctAnswers,setCorrectAnswers] = React.useState([])
     const [newGame,setNewGame]  = React.useState(false)
+    const [loading,setLoading] = React.useState(false)
     const [options,setOptions] = React.useState({
         game_category:"",
         game_difficulty:"",
@@ -173,8 +174,10 @@ export default function App(){
     
     return(
         on ? <main>
-            {options.counter === "with" && !buttonClicked  && <Timer checkAnswers={checkAnswers} reset={options.resetCounter} />}
-            {questionComponents}
+            
+            {options.counter === "with" && !buttonClicked  && questions.length !==0 &&
+                 <Timer checkAnswers={checkAnswers} reset={options.resetCounter} />}
+            {questions.length !==0 ? questionComponents : "LODING..."}
             <div className="temp">
                 {!buttonClicked && 
                     <><button className="button" onClick={checkAnswers}>Check Answers</button>
