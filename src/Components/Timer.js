@@ -5,7 +5,7 @@ import { useTimer } from "use-timer";
 export default function Timer(props) {
 
     const { time, reset } = useTimer({
-        initialTime: 60,
+        initialTime: 90,
         endTime:0,
         autostart:true,
         timerType: 'DECREMENTAL',
