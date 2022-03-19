@@ -3,6 +3,7 @@ import React from "react"
 import Question from "./Components/Question"
 import GameOptions from "./Components/GameOptions"
 import Timer from "./Components/Timer"
+import LoadingSpinner from "./Components/LoadingSpinner"
 
 
 export default function App(){
@@ -162,9 +163,10 @@ export default function App(){
 
     function resetGame() {
         setNewGame(prev =>!prev)
-        setCorrectAnswers([])
         setOptions(prev=>{return{...prev,resetCounter:true}})
         setButtonClicked(prev =>!prev)
+        setQuestions([])
+        setCorrectAnswers([])
     }
 
     function startGame() {
@@ -176,7 +178,7 @@ export default function App(){
             
             {options.counter === "with" && !buttonClicked  && questions.length !==0 &&
                  <Timer checkAnswers={checkAnswers} reset={options.resetCounter} />}
-            {questions.length !==0 ? questionComponents : "LODING..."}
+            {questions.length !==0 ? questionComponents : <LoadingSpinner/>}
             <div className="temp">
                 {!buttonClicked && 
                     <><button className="button" onClick={checkAnswers}>Check Answers</button>

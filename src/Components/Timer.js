@@ -17,7 +17,7 @@ export default function Timer(props) {
       
     return(
         <div className="Timer">
-            {time}
+            --- {time} seconds left ---
         </div>
     )
 }
