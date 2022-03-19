@@ -2,6 +2,7 @@ import { nanoid } from "nanoid"
 import React from "react"
 import Question from "./Components/Question"
 import GameOptions from "./Components/GameOptions"
+import Timer from "./Components/Timer"
 
 
 export default function App(){
@@ -12,8 +13,11 @@ export default function App(){
     const [newGame,setNewGame]  = React.useState(false)
     const [options,setOptions] = React.useState({
         game_category:"",
-        game_difficulty:""
+        game_difficulty:"",
+        counter:"without",
+        resetCounter:false
     })
+
 
     function handleChange(event) {
         const {name, value, type, checked} = event.target
@@ -67,6 +71,8 @@ export default function App(){
             .then(data => {setQuestions(convertData(data.results)); })
         // setQuestions(convertData(data.results))
     },[newGame,options])
+
+
      function handelClick(Qid,Aid) {
          setQuestions(prevQuestions => {
             let abc = []
@@ -157,12 +163,17 @@ export default function App(){
     function resetGame() {
         setNewGame(prev =>!prev)
         setCorrectAnswers([])
+        setOptions(prev=>{return{...prev,resetCounter:true}})
         setButtonClicked(prev =>!prev)
     }
 
-
+    function startGame() {
+        setOn(true)
+    }
+    
     return(
         on ? <main>
+            {options.counter === "with" && !buttonClicked  && <Timer checkAnswers={checkAnswers} reset={options.resetCounter} />}
             {questionComponents}
             <div className="temp">
                 {!buttonClicked && 
@@ -181,7 +192,7 @@ export default function App(){
             <h1>Quizzical</h1>
             <p>A small quizz game made by Wassim Jhinaoui</p>
             <GameOptions options={options} handleChange={handleChange} />
-            <button className="button" onClick={()=> setOn(true)}>Start Quiz</button>
+            <button className="button" onClick={startGame}>Start Quiz</button>
         </main>
     )
 }

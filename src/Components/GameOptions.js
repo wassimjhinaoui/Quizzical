@@ -50,6 +50,31 @@ export default function GameOptions(props){
                     <option value="hard">Hard</option>
                 </select>
             </label>
+            <fieldset>
+                <legend>With Counter ? </legend>
+                <span>
+                <input 
+                    type="radio"
+                    id="with"
+                    name="counter"
+                    value="with"
+                    checked={props.options.counter === "with"}
+                    onChange={props.handleChange}
+                />
+                <label htmlFor="with">With</label>
+                </span>
+                <span>
+                <input 
+                    type="radio"
+                    id="without"
+                    name="counter"
+                    value="without"
+                    checked={props.options.counter === "without"}
+                    onChange={props.handleChange}
+                />
+                <label htmlFor="without">Without</label>
+                </span>
+            </fieldset>
         </div>
     )
 
