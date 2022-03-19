@@ -4,7 +4,7 @@ import { useTimer } from "use-timer";
 
 export default function Timer(props) {
 
-    const { time, start, pause, reset, status } = useTimer({
+    const { time, reset } = useTimer({
         initialTime: 60,
         endTime:0,
         autostart:true,
